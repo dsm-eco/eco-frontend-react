@@ -2,26 +2,24 @@ import styled,{keyframes} from 'styled-components';
 import color from 'resourece/palette';
 
 const outLeft=keyframes`
-{
   0% {
-    transform: translate3d(-100%, 0, 0)
+    transform: translate3d(-100%, 0, 0);
   }
   100% {
-    transform: none
+    transform: none;
   }
-}` 
+` 
 const outRight=keyframes`
-{
+
   0% {
-    transform: none
+    transform: none;
   }
   100% {
-    transform: translate3d(-100%, 0, 0)
-  }
+    transform: translate3d(-100%, 0, 0);
 }` 
 
 const BackgroundMove=keyframes`
- {
+ 
 	0% {
 		background-position: 0% 50%;
 	}
@@ -31,7 +29,6 @@ const BackgroundMove=keyframes`
 	100% {
 		background-position: 0% 50%;
 	}
-}
 `
 
 

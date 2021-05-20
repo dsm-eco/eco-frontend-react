@@ -81,7 +81,7 @@ const TimeLine:React.FC=()=>{
         const itemList=[]
         const cnt=listCnt-postList.length;
         for(let i=0;i<cnt;i++)itemList.push(
-        <S.SkeletonItem>
+        <S.SkeletonItem key={i}>
             <div className="title"/>
             <div className="img"/>
             <div className="content"/>

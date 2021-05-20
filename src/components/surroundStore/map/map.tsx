@@ -15,7 +15,6 @@ declare global {
 
 const Map:React.FC<Props>=({location,setStoreData,storeDataList})=>{
 
-
     const imageSrc = locationPin,
           imageSize = new window.kakao.maps.Size(50, 50);
     const markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -72,7 +71,7 @@ const Map:React.FC<Props>=({location,setStoreData,storeDataList})=>{
 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[storeDataList])
+    },[storeDataList,location])
 
     return <div id="map"></div>
 }
