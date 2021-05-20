@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import * as S from './style'
 import PostItem from "./postItem"
 import {  postlistType} from 'recoil/post';

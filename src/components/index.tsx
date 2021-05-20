@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 import {Switch,Route} from "react-router-dom";
-import {Redirect, useHistory}from "react-router"
+import { useHistory}from "react-router"
 
 import { useRecoilValue } from "recoil";
 import {alertState}from "recoil/alert";

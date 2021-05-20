@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import * as S from './style'
 import StoreForm from 'components/write/storeForm';
 import EventForm from 'components/write/eventForm';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState,  useSetRecoilState } from 'recoil';
 import { writeSelector } from 'recoil/write';
 import { alertState } from 'recoil/alert';
 import { useHistory } from 'react-router';

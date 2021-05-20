@@ -21,6 +21,7 @@ const PostItem:React.FC<{data:StoreType|EventType,type:PostType,loadPostList:(ty
     const isMyPost=useMemo(() => {
         const userData:any=jwt(localStorage.getItem("access")||"");
         return userData.user_id===data.user_id
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const haertAction=useCallback(async() => {

@@ -5,7 +5,7 @@ import * as S from "./style";
 import { postlistType } from 'recoil/post';
 import { useRecoilState } from 'recoil';
 import { getRequest } from 'api';
-import jwt from "jwt-decode"
+// import jwt from "jwt-decode"
 const Mypage:React.FC=()=>{
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [type,setPostType]=useRecoilState(postlistType);
@@ -25,7 +25,7 @@ const Mypage:React.FC=()=>{
     
     useEffect(()=>{
         loadPostList();
-        const token=localStorage.getItem("access")||"";
+        //const token=localStorage.getItem("access")||"";
         //console.log(jwt(token))
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])

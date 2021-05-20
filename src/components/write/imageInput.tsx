@@ -2,7 +2,7 @@ import React, { useState} from 'react'
 import * as S from './style'
 import { useSetRecoilState } from 'recoil';
 import {alertState}from 'recoil/alert'
-import { useHistory } from 'react-router';
+//import { useHistory } from 'react-router';
 
 type Props={
     pushFileData:(files:File[])=>void
