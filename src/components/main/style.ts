@@ -52,7 +52,7 @@ top:0;
 bottom:0;
 left:0;
 right:0;
-z-index:80;
+z-index:9;
   @media screen and (min-width:800px){
     display:none;
   }
