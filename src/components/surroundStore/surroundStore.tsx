@@ -75,15 +75,15 @@ const SurroundStore:React.FC=()=>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
+    const {images,name,address,content}=storeData;
     return <S.Container>
         <S.SideInfo>
             <S.CurPos><p>현재위치는</p> <div><strong>{curPos}</strong>입니다.</div></S.CurPos>
-            {storeData.images.length>0&&<ImageViewer images={storeData.images} width={24.5}></ImageViewer>}
+            {images.length>0&&<ImageViewer images={images} width={24.5}></ImageViewer>}
             <S.Info>
-                <S.Title>{storeData.name}</S.Title>
-                <S.Address>{storeData.address}</S.Address>
-                <S.Content>{storeData.content.split("").map((e,i)=>e===`\n`?<br key={i}/>:e)}</S.Content>
+                <S.Title>{name}</S.Title>
+                <S.Address>{address}</S.Address>
+                <S.Content>{content.split("\n").map((e,i)=><>{e}<br/></>)}</S.Content>
             </S.Info>
         </S.SideInfo>
         <Map location={location} setStoreData={_setStoreData} storeDataList={storeDataList}></Map>

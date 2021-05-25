@@ -71,33 +71,23 @@ const Register:React.FC<PropsType>=({setMod,client})=>{
     return(
         <S.FlexBox>
             <S.Logo>SIGN UP</S.Logo>
-            <S.InputsBox>
                 <S.Input placeholder="NICKNAME" 
                     value={loginData.userName} 
                     onChange={e=>dispatch({type:"USERNAME",data:e.target.value})}/>
-            </S.InputsBox>
-            <S.InputsBox>
                 <S.Input placeholder="ID"
                     value={loginData.id}
                     onChange={e=>dispatch({type:"ID",data:e.target.value})}/>
-            </S.InputsBox>
-            <S.InputsBox>
                 <S.Input placeholder="PASSWORD"
                     type="password"
                     value={loginData.password}
                     onChange={e=>dispatch({type:"PASSWORD",data:e.target.value})}/>
-            </S.InputsBox>
-            <S.InputsBox>
                 <S.Input placeholder="PASSWORD CONFIRM"
                     type="password"
                     value={loginData.passwordConfirm}
                     onChange={e=>dispatch({type:"CONFIRMPASSWORD",data:e.target.value})}
                     onKeyUp={e=>e.key==="Enter"&&onSubmit()}
                     />
-            </S.InputsBox>
-            <S.InputsBox>
                <S.Button onClick={onSubmit}>GET START</S.Button>
-            </S.InputsBox>
             <S.Link onClick={()=>setMod(true)}>로그인 하기</S.Link>
         </S.FlexBox>
     )

@@ -61,6 +61,13 @@ export const ButtonContainer=styled.div`
         flex-basis: 0;
         flex-grow: 1;
         margin:0 .5rem;
+        outline: none;
+        border: none;
+        transition: transform .3s;
+        font-family: "Medium";
+        &:active{
+          transform:scale(1.1)
+        }
     }
 `;
 
@@ -86,7 +93,10 @@ font-weight:500;
 position:fixed;
 bottom:5px;
 right:5px;
+font-size: 1rem;
 font-family:"Medium";
+ -webkit-text-fill-color: black;
+  -webkit-text-stroke: .5px white;
 `;
 
 export const Overlay=styled.div`

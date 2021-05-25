@@ -36,7 +36,7 @@ const Mypage:React.FC=()=>{
     const withdrawal=async()=>{
         try{
             const userId:any=jwt(localStorage.getItem("access")||"");
-            if(userId)await getRequest().delete(`/user/${userId.user_id}/`);
+            if(userId)await getRequest().get(`/user/${userId.user_id}/`);
 
             history.push("/auth");
             localStorage.removeItem("access");

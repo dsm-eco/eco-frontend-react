@@ -23,10 +23,11 @@ const PostItem:React.FC<{data:StoreType|EventType,type:PostType,loadPostList:(ty
         return userData.user_id===data.user_id
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const {id,nickname,images}=useMemo(()=>data,[]);
     const haertAction=useCallback(async() => {
         try{
-            const res=await getRequest().get(`${type}/${data.id}/heart`);
+            const res=await getRequest().get(`${type}/${id}/heart`);
             console.log(res.data)
             setPostHeart(res.data.heart==="true");
             setHeartCnt(res.data.heart_cnt);
@@ -38,7 +39,7 @@ const PostItem:React.FC<{data:StoreType|EventType,type:PostType,loadPostList:(ty
 
     const deletePost=useCallback(async() => {
         try{
-            await getRequest().delete(`${type}/${data.id}/`);
+            await getRequest().delete(`${type}/${id}/`);
             setAlert({type:"success",text:"게시물 삭제 성공"});
             loadPostList(type);
         }catch(err){
@@ -51,7 +52,7 @@ const PostItem:React.FC<{data:StoreType|EventType,type:PostType,loadPostList:(ty
     const repoerPost=useCallback(async() => {
         if(report.id===data.id&&report.reported){
             try{
-                await getRequest().get(`${type}/${data.id}/report`);
+                await getRequest().get(`${type}/${id}/report`);
                 setAlert({type:"success",text:"게시물 신고 완료"});
                 setReportPost({id:data.id,reported:true});
                 setTimeout(()=>{setReportPost({...report,reported:false})},4000000);
@@ -67,10 +68,10 @@ const PostItem:React.FC<{data:StoreType|EventType,type:PostType,loadPostList:(ty
 
     return <S.Container>
             <S.Header>
-            <div>{data.nickname}</div>
-            <i className="fas fa-ellipsis-h" onClick={()=>setModalVisible(true)}></i>
+                <div>{nickname}</div>
+                <i className="fas fa-ellipsis-h" onClick={()=>setModalVisible(true)}></i>
             </S.Header>
-            {(data.images&&data.images.length>0)&& <ImageViewer images={data.images} width={40}/>}
+            {(images&&images.length>0)&& <ImageViewer images={images} width={40}/>}
             {type==="shop"?<StorePost data={data}/>:<EventPost data={data}/>}
             <S.HeartContainer onClick={haertAction}>
                 <p>{heartCnt}</p>

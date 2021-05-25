@@ -4,13 +4,13 @@ import { EventType } from "../timeline";
 
 
 const EventPost:React.FC<{data:EventType|any}>=({data})=>{
-
+    const {event_date,content}=data;
     return <S.Container>
         <S.DateText>
             <div className="label">이벤트 기간</div>
-            <p>{data.event_date}</p>
+            <p>{event_date}</p>
         </S.DateText>
-            <S.Contents>{data.content&&data.content.split(/\n/g).map((e:any,i:number)=><div key={i}><p>{e}</p><br/></div>)}</S.Contents>      
+            <S.Contents>{content&&content.split(/\n/g).map((e:any,i:number)=><div key={i}><p>{e}</p><br/></div>)}</S.Contents>      
     </S.Container>
 }
 

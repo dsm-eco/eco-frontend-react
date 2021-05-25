@@ -38,20 +38,14 @@ const Login:React.FC<PropsType> = ({setMod,client}) => {
     return (
         <S.FlexBox>
             <S.Logo>LOG IN</S.Logo>
-            <S.InputsBox>
-                <S.Input data-testid="idInput" placeholder="ID" value={ id } onChange={ e => setId(e.target.value) } />
-            </S.InputsBox>
-            <S.InputsBox>
+            
+                <S.Input data-testid="idInput" placeholder="ID" value={ id } onChange={ e => setId(e.target.value) } />            
                 <S.Input placeholder="PASSWORD" 
                          type="password" 
                          value={ password } 
                          onChange={ e => setPassword(e.target.value)}
-                         onKeyUp={e=>e.key==="Enter"&&onSubmit()} />
-            </S.InputsBox>
-            <S.InputsBox>
-                <S.Button onClick={ onSubmit }>LOGIN</S.Button>
-            </S.InputsBox>
-            <S.Link onClick={ () => setMod(false) } type="submit" >회원가입 하기</S.Link>
+                         onKeyUp={e=>e.key==="Enter"&&onSubmit()} />            
+                <S.Button onClick={ onSubmit }>LOGIN</S.Button>            <S.Link onClick={ () => setMod(false) } type="submit" >회원가입 하기</S.Link>
         </S.FlexBox>
     );
 };

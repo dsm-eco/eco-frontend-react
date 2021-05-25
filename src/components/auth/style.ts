@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const AuthBox=styled.div`
-width:25vw;
+width:40vw;
 height:100vh;
 border-radius:0 10px 10px 0px;
 background: linear-gradient(90deg, rgba(133,216,206,1) 0%, rgba(26,141,197,1) 100%);
 
-@media screen and (max-width:1200px){
+@media screen and (max-width:1000px){
     border-radius:0px;
     width:100vw;
     height:100vh;
@@ -25,6 +25,9 @@ export const FlexBox=styled.div`
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  @media screen and (min-width:1000px){
+    padding:0 1rem;
+  }
 
 ` ;
 
@@ -34,24 +37,12 @@ export const Logo=styled.h1`
   color:white;
   
 `;
-export const InputsBox=styled.div`
 
-display:flex;
-width:300px;
-height:45px;
-
-margin:10px;
-
-
-@media screen and (max-width:1200px){
-    border-radius:0px;
-    width:400px;
-}
-`;
 
 export const Input=styled.input`
-  height:100%;
-  width:100%;
+margin:.3rem;
+  height:45px;
+  width:90%;
   border-radius:10px;
   font-family:"Light";
   font-size:18px;
@@ -60,6 +51,7 @@ export const Input=styled.input`
 
   box-sizing:border-box;
   padding:2px 20px;
+
 `
 export const Link=styled.button`
   font-family:"Light";
@@ -76,8 +68,8 @@ export const Link=styled.button`
   margin-top:30px;
 `;
 export const Button=styled.button`
-  height:100%;
-  width:100%;
+  height:45px;
+  width:90%;
   border-radius:10px;
   font-size:20px;
   outline:none;
@@ -111,19 +103,19 @@ export const Header=styled.header`
     top: 10px; 
     right: 10px;
   }
-  @media screen and (max-width:1200px){
+  @media screen and (max-width:1000px){
     display:none;
   }
  
 `; 
 
 export const BackgroundContainer=styled.div`
-width:75vw;
+width:70vw;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-@media screen and (max-width:1200px){
+@media screen and (max-width:1000px){
     display:none;
   }
 `;
