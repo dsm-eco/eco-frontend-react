@@ -82,7 +82,7 @@ export const TextButton=styled.button`
 outline:none;
 border:none;
 background-color:transparent;
-color:${color.red};
+font-weight:500;
 position:fixed;
 bottom:5px;
 right:5px;
@@ -119,4 +119,7 @@ height:2rem;
 margin:0.3rem;
 margin-top:1rem;
 border-radius:5px;
+background-color: transparent;
+outline: none;
+border: none;
 `

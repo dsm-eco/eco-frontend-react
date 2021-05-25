@@ -3,14 +3,18 @@ import PostItem from "components/main/postItem";
 import {StoreType,EventType}from "components/main/timeline";
 import * as S from "./style";
 import { postlistType } from 'recoil/post';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { getRequest } from 'api';
-// import jwt from "jwt-decode"
+import {useHistory}from "react-router"
+import jwt from "jwt-decode"
+import { alertState } from 'recoil/alert';
 const Mypage:React.FC=()=>{
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [type,setPostType]=useRecoilState(postlistType);
     const [postList,setPostList]=useState([]);
     const [modalVisible,setModalVisible]=useState<boolean>(false);
+    const setAlert=useSetRecoilState(alertState);
+    const history=useHistory();
 
     const loadPostList=useCallback(async()=>{
         try{
@@ -25,13 +29,21 @@ const Mypage:React.FC=()=>{
     
     useEffect(()=>{
         loadPostList();
-        //const token=localStorage.getItem("access")||"";
-        //console.log(jwt(token))
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
-    const onModalClick=()=>{
-        setModalVisible(false)
+
+    const withdrawal=async()=>{
+        try{
+            const userId:any=jwt(localStorage.getItem("access")||"");
+            if(userId)await getRequest().delete(`/user/${userId.user_id}/`);
+
+            history.push("/auth");
+            localStorage.removeItem("access");
+            localStorage.removeItem("refresh");
+        }catch{
+            setAlert({type:"error",text:"회원 탈퇴 실패"})
+        }
     }
 
     return <S.Background>
@@ -46,14 +58,14 @@ const Mypage:React.FC=()=>{
                             <PostItem key={i} data={e} type={type} loadPostList={loadPostList}/>
          )} 
         </S.ScrollContainer>
-        <S.TextButton onClick={()=>setModalVisible(true)}>회원탈퇴</S.TextButton>
+        <S.TextButton onClick={()=>setModalVisible(true)}>계정 탈퇴하기</S.TextButton>
         {modalVisible&&
-            <S.Overlay onClick={onModalClick}>
+            <S.Overlay onClick={()=>setModalVisible(false)}>
                 <S.Modal>
                     정말 탈퇴하시겠습니까?
                     <div>
-                        <S.ModalButton>예</S.ModalButton>
-                        <S.ModalButton>아니오</S.ModalButton>
+                        <S.ModalButton onClick={withdrawal}>예</S.ModalButton>
+                        <S.ModalButton><strong>아니오</strong></S.ModalButton>
                     </div>
                 </S.Modal>
             </S.Overlay>}

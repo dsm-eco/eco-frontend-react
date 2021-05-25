@@ -65,10 +65,10 @@ const TimeLine:React.FC=()=>{
     }
 
     useEffect(() => {
-        // if(!localStorage.getItem("access")){
-        //     history.push("/auth");
-        //     return;
-        // }
+        if(!localStorage.getItem("access")){
+            history.push("/auth");
+            return;
+        }
         window.addEventListener("scroll",handScroll);
         loadPostList("shop");
         return () =>  window.addEventListener("scroll",handScroll);
