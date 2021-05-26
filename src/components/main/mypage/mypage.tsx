@@ -2,8 +2,7 @@ import React, { useState ,useEffect, useCallback} from "react";
 import PostItem from "components/main/postItem";
 import {StoreType,EventType}from "components/main/timeline";
 import * as S from "./style";
-import { postlistType } from 'recoil/post';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { getRequest } from 'api';
 import {useHistory}from "react-router"
 import jwt from "jwt-decode"
@@ -22,6 +21,7 @@ const Mypage:React.FC=()=>{
             const {data}=await getRequest().get(`/mypage/${type}`);
             setPostList(data.reverse());
         }catch{
+            setAlert({type:"error",text:"게시물 불러오기에 실패하였습니다."})
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[type]);
