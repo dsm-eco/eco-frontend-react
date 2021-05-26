@@ -10,22 +10,21 @@ import jwt from "jwt-decode"
 import { alertState } from 'recoil/alert';
 const Mypage:React.FC=()=>{
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [type,setPostType]=useRecoilState(postlistType);
+    const [type,setPostType]=useState<"shop"|"event">("shop");
     const [postList,setPostList]=useState([]);
     const [modalVisible,setModalVisible]=useState<boolean>(false);
     const setAlert=useSetRecoilState(alertState);
     const history=useHistory();
 
     const loadPostList=useCallback(async()=>{
+        setPostList([])
         try{
-            const {data}=await getRequest().get(`/${type}`);
+            const {data}=await getRequest().get(`/mypage/${type}`);
             setPostList(data.reverse());
-
         }catch{
-           
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+    },[type]);
     
     useEffect(()=>{
         loadPostList();
@@ -47,10 +46,10 @@ const Mypage:React.FC=()=>{
     }
 
     return <S.Background>
-        <S.UserInfo>회원님이 작성한 글</S.UserInfo>
+        <S.UserInfo>회원님께서 작성하신 글</S.UserInfo>
         <S.ButtonContainer>
-            <button>가게 소개 게시물</button>
-            <button>이벤트 소개 게시물</button>
+            <button onClick={()=>setPostType("shop")}>가게 소개 게시물</button>
+            <button onClick={()=>setPostType("event")}>이벤트 소개 게시물</button>
             
         </S.ButtonContainer>
         <S.ScrollContainer>

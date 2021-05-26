@@ -66,6 +66,7 @@ const PostItem:React.FC<{data:StoreType|EventType,type:PostType,loadPostList:(ty
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
+    console.log(type)
     return <S.Container>
             <S.Header>
                 <div>{nickname}</div>
