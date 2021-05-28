@@ -43,6 +43,7 @@ const TimeLine:React.FC=()=>{
     const [isMypage,setIsMypage]=useState(false);
     const scrollContainer=useRef<any>();
     const history=useHistory();
+    const [connect,setConnect]=useState(true);
     const setAlert=useSetRecoilState(alertState);
     
     const loadPostList= useCallback(async(type:"event"|"shop")=>{
@@ -52,7 +53,8 @@ const TimeLine:React.FC=()=>{
             const {data}=await getRequest().get(`/${type}`);
             setPostList(data.reverse());
         }catch{
-            setAlert({type:"error",text:"게시물을 불러오지 못하였습니다."})
+            setAlert({type:"error",text:"게시물을 불러오지 못하였습니다."});
+            setConnect(false);
         }
     },[setAlert, setPostType])
 
@@ -92,6 +94,7 @@ const TimeLine:React.FC=()=>{
 
  
     return <S.Background>
+        {connect}
             <S.SideBar isOpen={isOpen}>
                 <S.SideBarItem onClick={()=>{loadPostList("shop");setIsMypage(false);}}>친환경 가게 소개</S.SideBarItem>
                 <S.SideBarItem onClick={()=>{loadPostList("event");setIsMypage(false);}}>친환경 이벤트</S.SideBarItem>
@@ -124,7 +127,7 @@ const TimeLine:React.FC=()=>{
                     </S.ScrollContainer>
                 </S.PostContainer>                      
             </S.Body>
-                }
+            }
         
         {isOpen&&<S.Overlay/>}
     </S.Background>

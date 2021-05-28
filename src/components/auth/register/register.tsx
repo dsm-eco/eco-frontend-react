@@ -32,6 +32,7 @@ const initData={
 const Register:React.FC<PropsType>=({setMod,client})=>{
     const setAlert=useSetRecoilState(alertState);
 
+
     const reducer=(state:RegisterType,action:ReducerType):RegisterType=>{
         switch(action.type){
             case "USERNAME":
@@ -48,7 +49,8 @@ const Register:React.FC<PropsType>=({setMod,client})=>{
     }
     const [loginData,dispatch]=useReducer(reducer,initData);
 
-    const onSubmit=async()=>{
+    const onSubmit=async(e:any)=>{
+        e.preventDefault();
         if(loginData.passwordConfirm!==loginData.password){
             alert("비밀번호가 일치하지 않습니다.");
             return;
@@ -62,8 +64,18 @@ const Register:React.FC<PropsType>=({setMod,client})=>{
             }
             await client.post("user/register/",userData);
             setAlert({type:"success",text:"회원가입에 성공하였습니다."});
+            setMod(true)
         }catch(e){
-            setAlert({type:"error",text:"회원가입에 실패하였습니다."});
+            let message="회원가입 실패";
+            switch(e.response.status){
+                case 409:
+                    message="중복된 아이디입니다."
+                    break;
+                default:
+                    break;
+            }
+            setAlert({type:"error",text:message});
+           
         }
     }
 
@@ -85,10 +97,9 @@ const Register:React.FC<PropsType>=({setMod,client})=>{
                     type="password"
                     value={loginData.passwordConfirm}
                     onChange={e=>dispatch({type:"CONFIRMPASSWORD",data:e.target.value})}
-                    onKeyUp={e=>e.key==="Enter"&&onSubmit()}
                     />
-               <S.Button onClick={onSubmit}>GET START</S.Button>
-            <S.Link onClick={()=>setMod(true)}>로그인 하기</S.Link>
+               <S.Button type="submit" onClick={onSubmit}>GET START</S.Button>
+            <S.Link  onClick={()=>setMod(true)}>로그인 하기</S.Link>
         </S.FlexBox>
     )
 }

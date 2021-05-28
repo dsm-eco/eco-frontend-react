@@ -19,7 +19,7 @@ display:flex;
 overflow:hidden;
 `
 
-export const FlexBox=styled.div`
+export const FlexBox=styled.form`
   height:100%;
   display:flex;
   flex-direction:column;

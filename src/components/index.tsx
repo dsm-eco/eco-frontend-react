@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 import {Switch,Route} from "react-router-dom";
-import { useHistory}from "react-router"
+import { Redirect, useHistory}from "react-router"
 
 import { useRecoilValue } from "recoil";
 import {alertState}from "recoil/alert";
@@ -41,7 +41,7 @@ const Container:React.FC=()=>{
             <S.Header>
                 <div onClick={()=>history.push("/main")}><Logo></Logo></div>
             </S.Header>
-           {/* {localStorage.getItem("access")? <Redirect to="/main"/>: <Redirect to="/auth"/>} */}
+           {localStorage.getItem("access")? <Redirect to="/main"/>: <Redirect to="/auth"/>}
             <Switch>
                 <Route path="/auth" component={Auth}/>
                 <Route path="/main" component={TimeLine}/>

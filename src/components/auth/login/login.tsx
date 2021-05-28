@@ -15,7 +15,8 @@ const Login:React.FC<PropsType> = ({setMod,client}) => {
 
 
 
-    const onSubmit = async () => {
+    const onSubmit = async (e:any) => {
+        e.preventDefault();
         const loginData = {
             username:id,
             password
@@ -27,7 +28,8 @@ const Login:React.FC<PropsType> = ({setMod,client}) => {
             localStorage.setItem("refresh",data.refresh);
             setId("");
             setPassword("");
-            setAlert({type:"success",text:"로그인에 성공하였습니다."})
+            setAlert({type:"success",text:"로그인에 성공하였습니다."});
+            console.log("main")
             history.push("/main");
         }
         catch(e){
@@ -43,9 +45,9 @@ const Login:React.FC<PropsType> = ({setMod,client}) => {
                 <S.Input placeholder="PASSWORD" 
                          type="password" 
                          value={ password } 
-                         onChange={ e => setPassword(e.target.value)}
-                         onKeyUp={e=>e.key==="Enter"&&onSubmit()} />            
-                <S.Button onClick={ onSubmit }>LOGIN</S.Button>            <S.Link onClick={ () => setMod(false) } type="submit" >회원가입 하기</S.Link>
+                         onChange={ e => setPassword(e.target.value)} />            
+                <S.Button type="submit" onClick={ onSubmit }>LOGIN</S.Button>            
+                <S.Link onClick={ () => setMod(false) } type="submit" >회원가입 하기</S.Link>
         </S.FlexBox>
     );
 };

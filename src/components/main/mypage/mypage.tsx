@@ -8,35 +8,36 @@ import {useHistory}from "react-router"
 import jwt from "jwt-decode"
 import { alertState } from 'recoil/alert';
 const Mypage:React.FC=()=>{
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [type,setPostType]=useState<"shop"|"event">("shop");
     const [postList,setPostList]=useState([]);
     const [modalVisible,setModalVisible]=useState<boolean>(false);
     const setAlert=useSetRecoilState(alertState);
     const history=useHistory();
 
-    const loadPostList=useCallback(async()=>{
-        setPostList([])
+    const loadPostList=async()=>{
+        setPostList([]);
         try{
             const {data}=await getRequest().get(`/mypage/${type}`);
             setPostList(data.reverse());
         }catch{
-            setAlert({type:"error",text:"게시물 불러오기에 실패하였습니다."})
+            setAlert({type:"error",text:"게시물 불러오기에 실패하였습니다."});
+            setPostList([])
         }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[type]);
+    const _loadPostList=useCallback(()=>loadPostList,[]);
     
     useEffect(()=>{
         loadPostList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    },[type])
 
 
     const withdrawal=async()=>{
         try{
             const userId:any=jwt(localStorage.getItem("access")||"");
-            if(userId)await getRequest().get(`/user/${userId.user_id}/`);
-
+            if(userId)await getRequest().delete(`/user/${userId.user_id}/`);
+            setAlert({type:"success",text:"회원 탈퇴 성공"})
             history.push("/auth");
             localStorage.removeItem("access");
             localStorage.removeItem("refresh");
@@ -54,7 +55,7 @@ const Mypage:React.FC=()=>{
         </S.ButtonContainer>
         <S.ScrollContainer>
             {postList.map((e:StoreType|EventType,i:number)=>
-                            <PostItem key={i} data={e} type={type} loadPostList={loadPostList}/>
+                            <PostItem key={i} data={e} type={type} loadPostList={_loadPostList}/>
          )} 
         </S.ScrollContainer>
         <S.TextButton onClick={()=>setModalVisible(true)}>계정 탈퇴하기</S.TextButton>
