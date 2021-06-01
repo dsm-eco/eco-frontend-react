@@ -44,10 +44,10 @@ const EventForm:React.FC=()=>{
       <S.Title>이미지 선택</S.Title>
       <ImageInput pushFileData={pushFileData}/>
       <S.Title>이벤트 일정</S.Title>
-      <S.DateInput type="date" value={startDate} onChange={e=>setStartDate(e.target.value)}/>
+      <S.DateInput required type="date" value={startDate} onChange={e=>setStartDate(e.target.value)}/>
       {" ~ "}
-      <S.DateInput type="date" value={endDate} onChange={e=>setEndDate(e.target.value)}/>
-      <S.BigInput placeholder="자유 입력" value={content} onChange={(e)=>setContent(e.target.value)}/>
+      <S.DateInput required type="date"  value={endDate} onChange={e=>setEndDate(e.target.value)}/>
+      <S.BigInput required placeholder="자유 입력"  value={content} onChange={(e)=>setContent(e.target.value)}/>
       <S.ButtonContainer>
         <S.GradientBtn type="submit" onClick={onSubmit}>작성 완료</S.GradientBtn>
       </S.ButtonContainer>

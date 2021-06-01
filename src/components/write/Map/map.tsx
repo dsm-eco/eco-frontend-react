@@ -97,7 +97,7 @@ const Map: React.FC<Prop> = ({keyword,keywordHandle}) => {
 
   return (
     <>
-        <S.Input readOnly={hasError} value={keyword} 
+        <S.Input required readOnly={hasError} value={keyword} 
         onChange={e=>{setMapLoading(false);keywordHandle(e.target.value)}} placeholder="가게 이름 입력 후 마커 선택"/>
         <S.GradientBtn onClick={handleSearch}>주소 검색</S.GradientBtn>
         <S.MapContainer id="map">

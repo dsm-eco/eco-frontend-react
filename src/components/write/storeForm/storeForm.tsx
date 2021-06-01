@@ -4,7 +4,6 @@ import * as S from '../style'
 import Map from "components/write/Map/map"
 import { useSetRecoilState } from 'recoil';
 import { writeState } from 'recoil/write';
-import { alertState } from 'recoil/alert';
 
 
 const StoreForm: React.FC = () => {
@@ -13,7 +12,6 @@ const StoreForm: React.FC = () => {
   const [keyword,setKeyword]=useState<string>("");
   const [fileData, setFileData]=useState<File[]>([]);
   const sendData=useSetRecoilState(writeState);
-  const setAlert=useSetRecoilState(alertState);
 
   const keywordHandle=(text:string)=>{
     setKeyword(text);
@@ -28,14 +26,6 @@ const StoreForm: React.FC = () => {
     e.preventDefault();
     const formdata= new FormData();
 
-    if(!title){
-      setAlert({type:"error",text:"제목을 입력해주세요.."});
-      return;
-    }
-    if(!keyword){
-      setAlert({type:"error",text:"주소을 입력해주세요.."});
-      return;
-    }
     formdata.append("name",title);
     formdata.append("address",keyword);
     if(content)formdata.append("content",content);
