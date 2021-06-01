@@ -24,7 +24,8 @@ const StoreForm: React.FC = () => {
     setFileData([...fileData,...file]);    
   }
 
-  const onSubmit=()=>{
+  const onSubmit=(e:any)=>{
+    e.preventDefault();
     const formdata= new FormData();
 
     if(!title){
@@ -52,19 +53,19 @@ const StoreForm: React.FC = () => {
 
 
 
-  return <>
+  return <form>
     <S.Title>이미지 선택</S.Title>
     <ImageInput pushFileData={pushFileData}/>
     <S.Title>가게 이름</S.Title>
-    <S.Input placeholder="가게 이름" value={title} onChange={e=>{setTitle(e.target.value)}}/>
+    <S.Input required placeholder="가게 이름" value={title} onChange={e=>{setTitle(e.target.value)}}/>
     <S.Title>가게 주소</S.Title>
     <Map keyword={keyword} keywordHandle={keywordHandle}></Map>
     <S.Title>기타 사항</S.Title>
-    <S.BigInput placeholder="자유 입력" value={content} onChange={(e)=>setContent(e.target.value)}/>
+    <S.BigInput required placeholder="자유 입력" value={content} onChange={(e)=>setContent(e.target.value)}/>
     <S.ButtonContainer>
-      <S.GradientBtn onClick={onSubmit}>작성 완료</S.GradientBtn>
+      <S.GradientBtn type="submit" onClick={onSubmit}>작성 완료</S.GradientBtn>
     </S.ButtonContainer>
-  </>;
+  </form>;
 };
 
 export default StoreForm;
